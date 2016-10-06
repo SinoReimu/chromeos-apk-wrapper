@@ -10,11 +10,18 @@ elif [ -f "$1" ]
 then 
 	cp $1 ${basePath} 
         cd ${basePath}
-        a=`chromeos-apk ${basePath}$1` 
+	if [ "$3"x = "-t"x ]
+	then
+		echo "use tablet mode"
+		a=`chromeos-apk -t ${basePath}$1`
+	else
+		echo "use normal mode"
+                a=`chromeos-apk ${basePath}$1` 
+	fi
         echo ${a}
         b=`echo ${a}|grep -o '\([a-z]\+\.\)\+[a-z]\+'`
         echo "package "${b}" get, Overwriting messages.json"
-        echo -e "{\n\t\"appNotSupported\": {\n\t\t\"description\": \"Auto create by apk shell\",\n\t\t\"message\": \"This app is from android device\"\n\t},\n\t\"extName\": {\n\t\t\"description\": \""$2"\"\n\t\t\"message\": \""$2"\"\n\t}\n}">/${basePath}${b}/_locales/en/messages.json
+        echo -e "{\n\t\"appNotSupported\": {\n\t\t\"description\": \"Auto create by apk shell\",\n\t\t\"message\": \"This app is from android device\"\n\t},\n\t\"extName\": {\n\t\t\"description\": \""$2"\",\n\t\t\"message\": \""$2"\"\n\t}\n}">/${basePath}${b}/_locales/en/messages.json
 	rm ${basePath}$1
 else
 	echo "not a file"

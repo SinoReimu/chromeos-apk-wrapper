@@ -9,7 +9,7 @@
 ### 0x1 准备wrapper
 
 在~/Downloads文件夹下建立文件夹apk/ 
-运行 sudo wget xxx /bin
+运行 sudo wget ://github.com/SinoReimu/chromeos-apk-wrapper/releases/download/V0%2C1/apk /bin/apk
         sudo chmod +x /bin/apk
 
 ### 0x2 使用wrapper
@@ -19,7 +19,7 @@
 
 ### 0x3 版本更新
 
-2016.10.6 创建项目 并且 发布 1.0 Release
+2016.10.6 创建项目 并且 发布 0.1 Release
 
 ### 0X4 TODO
 
