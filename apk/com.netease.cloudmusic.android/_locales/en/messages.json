@@ -1,0 +1,10 @@
+{
+	"appNotSupported": {
+		"description": "Auto create by apk shell",
+		"message": "This app is from android device"
+	},
+	"extName": {
+		"description": "wangyiyun"
+		"message": "wangyiyun"
+	}
+}

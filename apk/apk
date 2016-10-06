@@ -1,0 +1,21 @@
+#!/bin/bash
+basePath=/home/chronos/user/Downloads/apk/
+if [ -z "$1" ]
+then 
+	echo "input a filename"
+elif [ -z "$2" ]
+then
+	echo "input a module name"
+elif [ -f "$1" ]
+then 
+	cp $1 ${basePath} 
+        cd ${basePath}
+        a=`chromeos-apk ${basePath}$1` 
+        echo ${a}
+        b=`echo ${a}|grep -o '\([a-z]\+\.\)\+[a-z]\+'`
+        echo "package "${b}" get, Overwriting messages.json"
+        echo -e "{\n\t\"appNotSupported\": {\n\t\t\"description\": \"Auto create by apk shell\",\n\t\t\"message\": \"This app is from android device\"\n\t},\n\t\"extName\": {\n\t\t\"description\": \""$2"\"\n\t\t\"message\": \""$2"\"\n\t}\n}">/${basePath}${b}/_locales/en/messages.json
+	rm ${basePath}$1
+else
+	echo "not a file"
+fi
